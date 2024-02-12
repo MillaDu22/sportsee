@@ -1,11 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from '../src/Components/Header/index.jsx';
+import VerticalLayout from '../src/Components/VerticalLayout/index.jsx';
 
 function Dashboard() {
   return (
     <div className="App">
-      <header className="App-header">
-      </header>
+      <Header />
+      <VerticalLayout />
     </div>
   );
 }
