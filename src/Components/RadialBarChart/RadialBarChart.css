@@ -1,0 +1,19 @@
+.container-radial-bar-chart {
+    position:relative;
+    width:258px;
+    height:263px;
+    background: #FBFBFB;
+    border-radius: 7px;
+    top:-173px;
+    left:750px;
+}
+.radial-bar {
+    position:absolute;
+    left:-235px;
+}
+.circle {
+    width:159px;
+    height: 159px;
+    border:1px solid black;
+    background:white;
+}

@@ -1,0 +1,9 @@
+.container-tiny-line-chart {
+    position:relative;
+    top :350px;
+    left:150px;
+    width: 258px;
+    height:263px;
+    background:#FF0000;
+    border-radius: 7px;
+}
