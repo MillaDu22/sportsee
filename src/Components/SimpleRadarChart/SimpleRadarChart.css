@@ -1,10 +1,10 @@
 .container-simple-radar-chart {
-    width:258px;
-    height:263px;
+    width:240px;
+    height:250px;
     position: relative;
     background-color: #282d30;
-    top:90px;
-    left:450px;
+    top:-250px;
+    left:410px;
     border-radius: 7px;
 }
 .radar-chart {

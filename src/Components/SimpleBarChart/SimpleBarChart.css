@@ -1,8 +1,8 @@
 .container-simple-bar-chart {
-    width:835px;
-    height:320px;
-    background:lightgray;
+    width:760px;
+    height:400px;
+    background:#FBFBFB;
     position: relative;
     left:150px;
-    top:300px;
+    top:70px;
 }

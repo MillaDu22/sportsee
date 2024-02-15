@@ -1,0 +1,11 @@
+.container-cards {
+    position: relative;
+    margin-top:-330px;
+    margin-left:940px;
+    width:256px;
+    height:670px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}

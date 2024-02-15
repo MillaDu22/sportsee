@@ -1,0 +1,42 @@
+.container-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width:198px;
+    padding-left:30px;
+    padding-right: 30px;
+    height:124px;
+    background: #FBFBFB;
+}
+
+.card-content {
+    display:flex;
+    flex-direction: column;
+    position: relative;
+    left:-55px;
+    top:-10px;
+    bottom:14px;
+}
+
+.logo-card {
+    width:60px;
+    height:60px;
+}
+
+.quantity {
+    font-family: 'Roboto';
+    color:#282D30;
+    font-weight: 700;
+    font-size:20px;
+    line-height:24px;
+}
+
+.name {
+    font-family: 'Roboto';
+    color:#74798C;
+    font-weight: 500;
+    font-size:14px;
+    line-height:24px;
+    margin-top: -30px;
+}

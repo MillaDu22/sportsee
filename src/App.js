@@ -6,15 +6,17 @@ import SimpleBarChart from './Components/SimpleBarChart/index.jsx';
 import SimpleRadarChart from './Components/SimpleRadarChart/index.jsx';
 import TinyLineChart from './Components/TinyLineChart/index.jsx';
 import RadialBarChart from './Components/RadialBarChart/index.jsx';
+import AsideColumn from '../src/Components/AsideColumn/index.jsx';
 
 
 function Dashboard() {
     return (
-        <div>
+        <div className = "container-dashboard">
             <Header />
             <VerticalLayout />
             <Introduction />
             <SimpleBarChart />
+            <AsideColumn />
             <TinyLineChart />
             <SimpleRadarChart />
             <RadialBarChart />
