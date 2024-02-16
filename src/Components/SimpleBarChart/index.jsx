@@ -1,67 +1,58 @@
 import "./SimpleBarChart.css";
 import React, { PureComponent } from 'react';
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import {ResponsiveContainer,  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
+import Legend from '../../assets/images/legend.png';
 
 const data = [
   {
-    name: '1',
-    Calories: 4000,
-    Poids: 2400,
-    amt: 2400,
+    day:'1',
+    Calories: 230,
+    Kilogram: 69,
   },
   {
-    name: '2',
-    Calories: 3000,
-    Poids: 1398,
-    amt: 2210,
+    day: '2',
+    Calories: 300,
+    Kilogram: 70,
   },
   {
-    name: '3',
-    Calories: 2000,
-    Poids: 9800,
-    amt: 2290,
+    day: '3',
+    Calories: 350,
+    Kilogram: 69.8,
   },
   {
-    name: '4',
-    Calories: 2780,
-    Poids: 3908,
-    amt: 2000,
+    day: '4',
+    Calories: 375,
+    Kilogram: 69.7,
   },
   {
-    name: '5',
-    Calories: 1890,
-    Poids: 4800,
-    amt: 2181,
+    day: '5',
+    Calories: 210,
+    Kilogram: 69.8,
   },
   {
-    name: '6',
-    Calories: 2390,
-    Poids: 3800,
-    amt: 2500,
+    day: '6',
+    Calories: 205,
+    Kilogram: 69.8,
   },
   {
-    name: '7',
-    Calories: 3490,
-    Poids: 4300,
-    amt: 2100,
+    day: '7',
+    Calories: 275,
+    Kilogram: 69.6,
   },
   {
-    name: '8',
-    Calories: 3490,
-    Poids: 4300,
-    amt: 2100,
+    day: '8',
+    Calories: 360,
+    Kilogram: 69.2,
   },
   {
-    name: '9',
-    Calories: 3490,
-    Poids: 4300,
-    amt: 2100,
+    day: '9',
+    Calories: 250,
+    Kilogram: 69.7,
   },
   {
-    name: '10',
-    Calories: 3490,
-    Poids: 4300,
-    amt: 2100,
+    day: '10',
+    Calories: 300,
+    Kilogram: 69.6,
   },
 ];
 
@@ -70,24 +61,24 @@ export default class SimpleBarChart extends PureComponent {
     return (
       <div className = "container-simple-bar-chart">
         <h3 className = "title-simple-bar-chart">Activité quotidienne</h3>
-        <BarChart
-          width={500}
-          height={300}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="Poids" fill="black" activeBar={<Rectangle fill="black" stroke="black" />} />
-          <Bar dataKey="Calories" fill="red" activeBar={<Rectangle fill="red" stroke="red" />} />
-        </BarChart>
+        <img src = { Legend } className = "legend" alt= "legend" />
+        <ResponsiveContainer height ="100%" width ="100%">
+          <BarChart
+            width = { 702 }
+            height = { 145 }
+            data = { data }
+            margin = {{ top: 5, right: 30, left: 30, bottom: 5 }}
+            barGap = {8}
+            barCategoryGap = "35%">
+            <CartesianGrid strokeDasharray ="3 3" vertical = {false} />
+            <XAxis dataKey ="day" stroke = "#989EAC" tickLine = {false} tickMargin = {15} padding = {{ left: -22, right: -22 }} tick = {{ fontSize:14, fontWeight:500 }}/>
+            <YAxis yAxisId = "calories" dataKey = "Calories" hide = "true" orientation = "left" stroke = "#9B9EAC" tickLine = {false} axisLine = {false} tickMargin = {10} allowDataOverflow = {true} minTickGap = {10} allowDecimals = {false}/>
+            <YAxis dataKey = "Kilogram" yAxisId = "kilogram" orientation = "right" stroke = "#9B9EAC" tickLine = {false} axisLine = {false} tickMargin = {30} allowDataOverflow = {true} minTickGap = {10} allowDecimals = {false} domain = {["dataMin -1", "dataMax +1"]} />
+            <Tooltip />
+            <Bar yAxisId = "kilogram" dataKey = "Kilogram" fill = "black" radius = {[50, 50, 0, 0]} barSize = {8} />
+            <Bar yAxisId = "calories" dataKey = "Calories" fill = "red" radius = {[50, 50, 0, 0]} barSize = {8} />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     );
   }

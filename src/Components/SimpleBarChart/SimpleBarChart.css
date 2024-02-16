@@ -1,8 +1,31 @@
 .container-simple-bar-chart {
-    width:760px;
-    height:400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width:835px;
+    width:74.5%;
+    height:320px;
     background:#FBFBFB;
     position: relative;
-    left:150px;
-    top:70px;
+    left:0px;
+    top:60px;
+}
+
+.title-simple-bar-chart {
+    position:relative;
+    right:33%;
+    bottom:0%;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.legend {
+    position:relative;
+    object-fit: cover;
+    left:26%;
+    bottom:10%;
+    width: 36%;
+    height:25px;
 }

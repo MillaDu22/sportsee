@@ -1,11 +1,10 @@
 .container-radial-bar-chart {
     position:relative;
-    width:240px;
-    height:250px;
+    max-width:240px;
+    width:30%;
+    height:233px;
     background: #FBFBFB;
     border-radius: 7px;
-    top:-500px;
-    left:670px;
 }
 .radial-bar {
     position:absolute;

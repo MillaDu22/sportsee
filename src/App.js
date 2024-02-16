@@ -14,12 +14,16 @@ function Dashboard() {
         <div className = "container-dashboard">
             <Header />
             <VerticalLayout />
-            <Introduction />
-            <SimpleBarChart />
-            <AsideColumn />
-            <TinyLineChart />
-            <SimpleRadarChart />
-            <RadialBarChart />
+            <div className = "dash-center">
+                <Introduction />
+                <SimpleBarChart />
+                <AsideColumn />
+                <div className ='charts-row'>
+                    <TinyLineChart />
+                    <SimpleRadarChart />
+                    <RadialBarChart />
+                </div>
+            </div>
         </div>
     );
 }
