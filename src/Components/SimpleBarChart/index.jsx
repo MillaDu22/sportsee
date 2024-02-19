@@ -71,12 +71,12 @@ export default class SimpleBarChart extends PureComponent {
             barGap = {8}
             barCategoryGap = "35%">
             <CartesianGrid strokeDasharray ="3 3" vertical = {false} />
-            <XAxis dataKey ="day" stroke = "#989EAC" tickLine = {false} tickMargin = {15} padding = {{ left: -22, right: -22 }} tick = {{ fontSize:14, fontWeight:500 }}/>
-            <YAxis yAxisId = "calories" dataKey = "Calories" hide = "true" orientation = "left" stroke = "#9B9EAC" tickLine = {false} axisLine = {false} tickMargin = {10} allowDataOverflow = {true} minTickGap = {10} allowDecimals = {false}/>
-            <YAxis dataKey = "Kilogram" yAxisId = "kilogram" orientation = "right" stroke = "#9B9EAC" tickLine = {false} axisLine = {false} tickMargin = {30} allowDataOverflow = {true} minTickGap = {10} allowDecimals = {false} domain = {["dataMin -1", "dataMax +1"]} />
+            <XAxis dataKey ="day" stroke = "#989EAC" tickLine = { false } tickMargin = { 15 } padding = {{ left: -22, right: -22 }} tick = {{ fontSize:14, fontWeight:500 }}/>
+            <YAxis yAxisId = "calories" dataKey = "Calories" hide = "true" orientation = "left" stroke = "#9B9EAC" tickLine = { false } axisLine = { false } tickMargin = { 10 } allowDataOverflow = { true } minTickGap = { 10 } allowDecimals = { false }/>
+            <YAxis dataKey = "Kilogram" yAxisId = "kilogram" orientation = "right" stroke = "#9B9EAC" tickLine = { false } axisLine = { false } tickMargin = { 30 } allowDataOverflow = { true } minTickGap = { 10 } allowDecimals = { false } domain = {[ "dataMin -1", "dataMax +1" ]} />
             <Tooltip />
-            <Bar yAxisId = "kilogram" dataKey = "Kilogram" fill = "black" radius = {[50, 50, 0, 0]} barSize = {8} />
-            <Bar yAxisId = "calories" dataKey = "Calories" fill = "red" radius = {[50, 50, 0, 0]} barSize = {8} />
+            <Bar yAxisId = "kilogram" dataKey = "Kilogram" fill = "black" radius = {[ 50, 50, 0, 0 ]} barSize = { 8 } />
+            <Bar yAxisId = "calories" dataKey = "Calories" fill = "red" radius = {[ 50, 50, 0, 0 ]} barSize = { 8 } />
           </BarChart>
         </ResponsiveContainer>
       </div>
