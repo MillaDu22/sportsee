@@ -4,5 +4,17 @@
     width:30%;
     height:233px;
     background:#FF0000;
+    color: #fffcfc45;
     border-radius: 7px;
+}
+
+.title-tiny-line-chart {
+    font-family: 'Roboto';
+    color:#ffffff7f;
+    font-size: 15px;
+    font-weight: 500;
+    line-height:24px;
+    width:147px;
+    position:relative;
+    left: 20px;
 }
