@@ -1,38 +1,27 @@
 import './RadialBarChart.css';
 import React, { PureComponent } from 'react';
-import { RadialBarChart, RadialBar} from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const data = [
     {
-        name: 'unknow',
-        uv: 100,
-        pv: 4800,
-        fill: 'white',
-    },
-    {
-        name: 'unknow',
-        uv: 12,
-        pv: 4800,
-        fill: '#FF0000',
-    },
+        name: 'Score',
+        uv: 15,
+    }
 ];
 
 export default class Example extends PureComponent {
     render() {
         return (
-            <div className ="container-radial-bar-chart">
-                <RadialBarChart 
-                    width={730} 
-                    height={250} 
-                    innerRadius="10%" 
-                    outerRadius="80%" 
-                    data={data} 
-                    startAngle={360} 
-                    endAngle={0}
-                    className = "radial-bar"
-                >
-                <RadialBar minAngle={15} label={{ fill: '#666', position: 'insideStart' }} background clockWise={true} dataKey='uv' />
-                </RadialBarChart>
+            <div className = "container-radial-bar-chart">
+                <h3 className = "title-pie-chart">Score</h3>
+                <p className = "objectif-score">12% de votre objectif</p>
+                <ResponsiveContainer height = "100%" width = "100%">
+                    <PieChart width = { 130 } height = { 130 } margin = {{ bottom: 35, top: -35 }}>
+                        <Pie data = { data } dataKey = "uv"  startAngle = { 90 } endAngle = { 180 } innerRadius = { "60%"} outerRadius = { "70%" } cornerRadius ={ 10 } >
+                            <Cell fill = "red" cornerRadius = "50%"/>
+                        </Pie>
+                    </PieChart>
+                </ResponsiveContainer>
             </div>
         );
     }

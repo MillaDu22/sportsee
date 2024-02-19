@@ -6,13 +6,25 @@
     background: #FBFBFB;
     border-radius: 7px;
 }
-.radial-bar {
-    position:absolute;
-    left:-235px;
+
+.title-pie-chart {
+    font-family: "Roboto";
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #20253A;
+    position:relative;
+    left:20px;
 }
-.circle {
-    width:159px;
-    height: 159px;
-    border:1px solid black;
-    background:white;
+
+.objectif-score {
+    position: absolute;
+    top : 37%;
+    left:37%;
+    width:55px;
+    font-family: "Roboto";
+    color: #74798C;
+    font-size :16px;
+    font-weight: 500;
+    text-align: center;
 }

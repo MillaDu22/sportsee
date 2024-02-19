@@ -6,32 +6,26 @@ const data = [
     {
         kind: 'Intensité',
         performance: 120,
-        fullMark: 150,
     },
     {
         kind: 'Vitesse',
         performance: 98,
-        fullMark: 150,
     },
     {
         kind: 'Force',
         performance: 86,
-        fullMark: 150,
     },
     {
         kind: 'Endurance',
         performance: 99,
-        fullMark: 150,
     },
     {
         kind: 'Energie',
         performance: 85,
-        fullMark: 150,
     },
     {
         kind: 'Cardio',
         performance: 65,
-        fullMark: 150,
     },
 ];
 
