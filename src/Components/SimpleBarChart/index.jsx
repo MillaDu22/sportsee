@@ -1,5 +1,5 @@
 import "./SimpleBarChart.css";
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {ResponsiveContainer,  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
 import Legend from '../../assets/images/legend.png';
 import { USER_ACTIVITY } from '../../Services/DataMock';
