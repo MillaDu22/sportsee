@@ -6,53 +6,38 @@ import Legend from '../../assets/images/legend.png';
 const data = [
   {
     day:'1',
-    Calories: 230,
-    Kilogram: 69,
-  },
-  {
-    day: '2',
-    Calories: 300,
+    Calories: 240,
     Kilogram: 70,
   },
   {
+    day: '2',
+    Calories: 220,
+    Kilogram: 69,
+  },
+  {
     day: '3',
-    Calories: 350,
-    Kilogram: 69.8,
+    Calories: 280,
+    Kilogram: 70,
   },
   {
     day: '4',
-    Calories: 375,
-    Kilogram: 69.7,
+    Calories: 500,
+    Kilogram: 70,
   },
   {
     day: '5',
-    Calories: 210,
-    Kilogram: 69.8,
+    Calories: 160,
+    Kilogram: 69,
   },
   {
     day: '6',
-    Calories: 205,
-    Kilogram: 69.8,
+    Calories: 162,
+    Kilogram: 69,
   },
   {
     day: '7',
-    Calories: 275,
-    Kilogram: 69.6,
-  },
-  {
-    day: '8',
-    Calories: 360,
-    Kilogram: 69.2,
-  },
-  {
-    day: '9',
-    Calories: 250,
-    Kilogram: 69.7,
-  },
-  {
-    day: '10',
-    Calories: 300,
-    Kilogram: 69.6,
+    Calories: 390,
+    Kilogram: 69,
   },
 ];
 

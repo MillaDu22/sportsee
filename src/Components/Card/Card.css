@@ -4,11 +4,12 @@
     justify-content: space-between;
     align-items: center;
     justify-content: flex-start;
-    max-width:198px;
-    width:85%;
+    width:70%;
     padding-left:15%;
     padding-right: 15%;
-    height:124px;
+    position: relative;
+    margin-left : 10%;
+    height:127px;
     background: #FBFBFB;
 }
 

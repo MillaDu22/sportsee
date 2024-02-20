@@ -5,7 +5,7 @@ import Introduction from './Components/Introduction/index.jsx';
 import SimpleBarChart from './Components/SimpleBarChart/index.jsx';
 import SimpleRadarChart from './Components/SimpleRadarChart/index.jsx';
 import TinyLineChart from './Components/TinyLineChart/index.jsx';
-import RadialBarChart from './Components/RadialBarChart/index.jsx';
+import PieBarChart from './Components/PieBarChart/index.jsx';
 import AsideColumn from '../src/Components/AsideColumn/index.jsx';
 
 
@@ -21,7 +21,7 @@ function Dashboard() {
                 <div className ='charts-row'>
                     <TinyLineChart />
                     <SimpleRadarChart />
-                    <RadialBarChart />
+                    <PieBarChart />
                 </div>
             </div>
         </div>

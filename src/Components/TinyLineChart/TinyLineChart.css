@@ -1,11 +1,12 @@
 .container-tiny-line-chart {
     position:relative;
-    max-width: 240px;
-    width:30%;
-    height:233px;
+    max-width: 258px;
+    width:32%;
+    height:263px;
     background:#FF0000;
     color: #fffcfc45;
     border-radius: 7px;
+    box-shadow:rgba( 0, 0, 0, 0.212);
 }
 
 .title-tiny-line-chart {

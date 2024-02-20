@@ -1,10 +1,11 @@
-.container-radial-bar-chart {
+.container-pie-bar-chart {
     position:relative;
-    max-width:240px;
-    width:30%;
-    height:233px;
+    max-width:258px;
+    width:32%;
+    height:263px;
     background: #FBFBFB;
     border-radius: 7px;
+    box-shadow:rgba( 0, 0, 0, 0.212);
 }
 
 .title-pie-chart {
@@ -17,14 +18,28 @@
     left:20px;
 }
 
+.percentage-score {
+    position: absolute;
+    top : 30%;
+    left:38.5%;
+    width:55px;
+    font-family: "Roboto";
+    color: #282D30;
+    font-size :26px;
+    font-weight: 700;
+    text-align: center;
+    z-index: 2;
+}
+
 .objectif-score {
     position: absolute;
-    top : 37%;
+    top : 50%;
     left:37%;
-    width:55px;
+    width:60px;
     font-family: "Roboto";
     color: #74798C;
     font-size :16px;
     font-weight: 500;
     text-align: center;
+    z-index: 2;
 }

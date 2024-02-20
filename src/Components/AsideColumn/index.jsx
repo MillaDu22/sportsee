@@ -7,7 +7,7 @@ import LipidesIcon from '../../assets/images/lipidesicon.png';
 
 function AsideColumn() {
     return (
-        <div className = "container-cards"> 
+        <div className = "column-cards"> 
             <span className = "back-card">
                 <Card name = "Calories" quantity = "2500kCal" cover = { CaloriesIcon } />
             </span>

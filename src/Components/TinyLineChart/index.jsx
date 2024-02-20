@@ -5,31 +5,31 @@ import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 const data = [
     {
         day: 'L',
-        sessionLength: 42,
+        sessionLength: 30,
     },
     {
         day: 'M',
-        sessionLength: 14,
+        sessionLength: 40,
     },
     {
         day: 'M',
-        sessionLength: 34,
+        sessionLength: 50,
     },
     {
         day: 'J',
-        sessionLength: 4,
+        sessionLength: 30,
     },
     {
         day: 'V',
-        sessionLength: 68,
+        sessionLength: 30,
     },
     {
         day: 'S',
-        sessionLength: 46,
+        sessionLength: 50,
     },
     {
         day: 'D',
-        sessionLength: 104,
+        sessionLength: 50,
     },
 ];
 

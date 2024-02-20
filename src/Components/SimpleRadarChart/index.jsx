@@ -5,27 +5,27 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } fro
 const data = [
     {
         kind: 'Intensité',
-        performance: 120,
+        performance: 110,
     },
     {
         kind: 'Vitesse',
-        performance: 98,
+        performance: 220,
     },
     {
         kind: 'Force',
-        performance: 86,
+        performance: 80,
     },
     {
         kind: 'Endurance',
-        performance: 99,
+        performance: 80,
     },
     {
         kind: 'Energie',
-        performance: 85,
+        performance: 240,
     },
     {
         kind: 'Cardio',
-        performance: 65,
+        performance: 200,
     },
 ];
 
