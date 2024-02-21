@@ -1,7 +1,6 @@
 import './PieBarChart.css';
 import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import { USER_MAIN_DATA } from '../../Services/DataMock';
 import { getUserMainData } from '../../Services/DataMock';
 
 const data = [
@@ -10,23 +9,28 @@ const data = [
         score: 30,
     }
 ];
-
 export default function PieBarChart() {
     const [ scorePercentage, setScorePercentage ] = useState(0);
     useEffect(() => {
-        // Fetch data user Cecilia //
-        const fetchUserMainData = async () => {
-            const userData = USER_MAIN_DATA.find( user => user.id === 18 );
-            if ( userData ) {
-                setScorePercentage( userData.score * 100 );
+        const fetchUserData = async () => {
+            try {
+                // Récupération de l'ID utilisateur depuis les paramètres de l'URL //
+                const params = new URLSearchParams( window.location.search );
+                const userId = parseInt(params.get('user') ?? 12); // Utilisateur 12 par défaut //
+                // Récupération des données utilisateur en fonction de l'ID //
+                const userData = getUserMainData( userId );
+                const score = userId === 12 ? userData.todayScore : userData.score;
+                setScorePercentage(score * 100);
+            } catch ( error ) {
+                console.error( 'Erreur lors de la récupération des données utilisateur :', error );
             }
         };
-        fetchUserMainData();
+        fetchUserData();
     }, []);
     return (
         <div className = "container-pie-bar-chart">
             <h3 className = "title-pie-chart">Score</h3>
-            <h4 className = "percentage-score">{scorePercentage}%</h4><p className = "objectif-score">de votre objectif</p>
+            <h4 className = "percentage-score">{ scorePercentage }%</h4><p className = "objectif-score">de votre objectif</p>
             <ResponsiveContainer height = "100%" width = "100%">
                 <PieChart width = { 130 } height = { 130 } margin = {{ bottom: 35, top: -35 }} fill="#8884d8">
                 <Pie dataKey = "value" cx = "50%" cy = "50%" outerRadius = { 70 } fill = "white" isAnimationActive = { false } />

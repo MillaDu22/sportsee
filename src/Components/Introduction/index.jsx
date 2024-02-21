@@ -11,7 +11,7 @@ function Introduction () {
         });
         let userId = params.user ?? 12;
         userId = parseInt(userId)
-
+        
         const user = getUserMainData(userId);
         setUserData(user);
     }, []);
