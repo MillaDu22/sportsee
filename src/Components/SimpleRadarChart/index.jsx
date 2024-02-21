@@ -11,7 +11,6 @@ export default function SimpleRadarChart() {
                 const params = new URLSearchParams( window.location.search );
                 let userId = params.get( 'user') ?? 12;
                 userId = parseInt( userId );
-
                 const userData = getUserPerformance( userId );
                 const formattedData = userData.data.map( item => ({
                     kind: userData.kind[ item.kind ],
