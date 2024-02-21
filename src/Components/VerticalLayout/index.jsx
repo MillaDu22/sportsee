@@ -1,20 +1,26 @@
 import './verticalLayout.css';
+import Button from '../ButtonLayout/index.jsx';
 import LogoMeditation from '../../assets/images/icon-meditation.png';
-import LogoSwiming from '../../assets/images/icon-swiming.png';
+import LogoSwimming from '../../assets/images/icon-swiming.png';
 import LogoBiker from '../../assets/images/icon-biker.png';
 import LogoBodyBuilding from '../../assets/images/icon-body-building.png';
 import Copyright from '../../assets/images/copyright.png';
 
 function VerticalLayout() {
+    const buttons = [   
+        { logoSrc: LogoMeditation, altText: 'logo-meditation' },
+        { logoSrc: LogoSwimming, altText: 'logo-swimming' },
+        { logoSrc: LogoBiker, altText: 'logo-biker' },
+        { logoSrc: LogoBodyBuilding, altText: 'logo-body-building' }
+    ];   
     return (
-        <div className ="vertical-layout">
+        <div className = "vertical-layout">
             <nav className = "nav-vertical-layout">
-                <img src = {LogoMeditation} className = "logo-button" alt = "logo-meditation"/>
-                <img src = {LogoSwiming} className = "logo-button" alt = "logo-swiming"/>
-                <img src = {LogoBiker} className = "logo-button" alt = "logo-biker"/>
-                <img src = {LogoBodyBuilding} className = "logo-button" alt = "logo-body-building"/>
+                { buttons.map(( button, index ) => (
+                <Button key = { index } logoSrc = { button.logoSrc } altText={ button.altText } />
+                ))}
             </nav>
-            <img src = {Copyright} className = "copyright" alt="copyright"/>
+            <img src = { Copyright } className = "copyright" alt = "copyright"/>
         </div>
     )
 }

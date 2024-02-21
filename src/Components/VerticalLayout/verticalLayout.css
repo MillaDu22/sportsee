@@ -21,12 +21,6 @@
     overflow: hidden;
 }
 
-.logo-button {
-    width:55%;
-    height:64px;
-    object-fit: cover;
-}
-
 .copyright {
     top:47%;
     width:15px;
