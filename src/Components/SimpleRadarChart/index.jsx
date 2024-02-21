@@ -1,19 +1,25 @@
 import './SimpleRadarChart.css';
 import React, { useState, useEffect } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
-import { USER_PERFORMANCE } from '../../Services/DataMock';
+import { getUserPerformance } from '../../Services/DataMock';
 
 export default function SimpleRadarChart() {
     const [ performanceData, setPerformanceData ] = useState([]);
     useEffect(() => {
-        // Fetch performance data Cecilia //
         const fetchUserPerformanceData = async () => {
-            const userData = USER_PERFORMANCE.find( user => user.userId === 18 );
-            if (userData) {
-                setPerformanceData(userData.data.map( item => ({
+            try {
+                const params = new URLSearchParams( window.location.search );
+                let userId = params.get( 'user') ?? 12;
+                userId = parseInt( userId );
+
+                const userData = getUserPerformance( userId );
+                const formattedData = userData.data.map( item => ({
                     kind: userData.kind[ item.kind ],
                     performance: item.value
-                })));
+                }));
+                setPerformanceData( formattedData );
+            } catch ( error ) {
+                console.error( 'Erreur lors de la récupération des données de performance de l\'utilisateur :', error );
             }
         };
         fetchUserPerformanceData();
