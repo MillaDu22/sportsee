@@ -2,21 +2,25 @@ import "./SimpleBarChart.css";
 import React, { useState, useEffect } from 'react';
 import {ResponsiveContainer,  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
 import Legend from '../../assets/images/legend.png';
-import { USER_ACTIVITY } from '../../Services/DataMock';
+import { getUserActivity } from '../../Services/DataMock';
 
 export default function SimpleBarChart() {
-  const [ activityData, setActivityData ] = useState([]);
+  const [activityData, setActivityData] = useState([]);
   useEffect(() => {
-    // Fetch activité data Cecilia //
     const fetchUserActivity = async () => {
-      const userData = USER_ACTIVITY.find( user => user.userId === 18 );
-      if ( userData ) {
-        const modifiedData = userData.sessions.map(( session, index ) => ({
-          day: index + 1, // Remplace les dates par l'index +1 //
+      try {
+        const params = new URLSearchParams(window.location.search);
+        let userId = params.get('user') ?? 12;
+        userId = parseInt(userId);
+        const userData = getUserActivity(userId);
+        const modifiedData = userData.sessions.map((session, index) => ({
+          day: index + 1,
           Calories: session.calories,
           Kilogram: session.kilogram,
         }));
-        setActivityData( modifiedData );
+        setActivityData(modifiedData);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données d\'activité utilisateur :', error);
       }
     };
     fetchUserActivity();
