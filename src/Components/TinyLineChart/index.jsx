@@ -1,7 +1,8 @@
 import './TinyLineChart.css';
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { USER_AVERAGE_SESSIONS } from '../../Services/DataMock.js';
+import { getUserAverageSessions } from '../../Services/DataMock.js';
+
 
 const dayAbbreviations = {
     1: 'L',
@@ -15,17 +16,24 @@ const dayAbbreviations = {
 
 export default function TinyLineChart() {
     const [ sessionData, setSessionData ] = useState([]);
-
     useEffect(() => {
-        // Fetch average session data Cecilia //
-            const userData = USER_AVERAGE_SESSIONS.find( user => user.userId === 18 );
-            if ( userData ) {
-                setSessionData( userData.sessions.map( session => ({
-                    day: dayAbbreviations[ session.day ],
+        const fetchUserAverageSessions = async () => {
+            try {
+                const params = new URLSearchParams( window.location.search );
+                let userId = params.get( 'user' ) ?? 12;
+                userId = parseInt( userId );
+                const userData = getUserAverageSessions( userId );
+                const modifiedData = userData.sessions.map( session => ({
+                    day: dayAbbreviations[session.day],
                     sessionLength: session.sessionLength,
-                })));
+                }));
+                setSessionData( modifiedData );
+            } catch ( error ) {
+                console.error( 'Erreur lors de la récupération des données de session moyenne de l\'utilisateur :', error );
             }
-    }, []);  
+        };
+        fetchUserAverageSessions();
+    }, []);
     return (
         <div className = "container-tiny-line-chart">
             <h3 className = "title-tiny-line-chart">Durée moyenne des sessions</h3>

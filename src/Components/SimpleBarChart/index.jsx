@@ -5,22 +5,22 @@ import Legend from '../../assets/images/legend.png';
 import { getUserActivity } from '../../Services/DataMock';
 
 export default function SimpleBarChart() {
-  const [activityData, setActivityData] = useState([]);
+  const [ activityData, setActivityData ] = useState([]);
   useEffect(() => {
     const fetchUserActivity = async () => {
       try {
-        const params = new URLSearchParams(window.location.search);
-        let userId = params.get('user') ?? 12;
-        userId = parseInt(userId);
-        const userData = getUserActivity(userId);
-        const modifiedData = userData.sessions.map((session, index) => ({
+        const params = new URLSearchParams( window.location.search );
+        let userId = params.get( 'user' ) ?? 12;
+        userId = parseInt( userId );
+        const userData = getUserActivity( userId );
+        const modifiedData = userData.sessions.map(( session, index ) => ({
           day: index + 1,
           Calories: session.calories,
           Kilogram: session.kilogram,
         }));
-        setActivityData(modifiedData);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des données d\'activité utilisateur :', error);
+        setActivityData( modifiedData );
+      } catch ( error ) {
+        console.error( 'Erreur lors de la récupération des données d\'activité utilisateur :', error );
       }
     };
     fetchUserActivity();
