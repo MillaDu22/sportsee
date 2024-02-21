@@ -1,0 +1,20 @@
+.dash-center {
+    position: relative;
+    margin-left:14%;
+    margin-top:3%;
+    max-width: 1126px;
+    width: 80%;
+    height:779px;
+}
+
+.charts-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position:relative;
+    margin-top:-245px;
+    height:233px;
+    max-width: 835px;
+    width: 74.5%;
+}
