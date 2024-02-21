@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './Introduction.css';
-import { USER_MAIN_DATA } from '../../Services/DataMock';
+import { getUserMainData } from '../../Services/DataMock';
 
 function Introduction () {
     const [ userData, setUserData ] = useState( null );
     useEffect(() => {
         // Fetch user data //
-        const user = USER_MAIN_DATA.find(user => user.userInfos.firstName === 'Cecilia');
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let userId = params.user ?? 12;
+        userId = parseInt(userId)
+
+        const user = getUserMainData(userId);
         setUserData(user);
     }, []);
     if ( !userData ) {

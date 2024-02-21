@@ -10,10 +10,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <HashRouter>
       <Routes>
-        <Route exact path='/user/18' element= {<Dashboard />}/>
+        <Route exact path='/' element= {<Dashboard />}/>
         <Route exact path="/:userId/" element={<Dashboard />}/>
         <Route path="*" element={<Error />} /> 
-        <Route path= "/" element={<Navigate replace to = "user/18" />} />
+        <Route path= "/" element={<Navigate replace to = "/" />} />
       </Routes>
     </HashRouter>
   );

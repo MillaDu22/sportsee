@@ -2,6 +2,7 @@ import './PieBarChart.css';
 import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { USER_MAIN_DATA } from '../../Services/DataMock';
+import { getUserMainData } from '../../Services/DataMock';
 
 const data = [
     {
