@@ -1,32 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import './Introduction.css';
-import { getUserMainData } from '../../Services/DataMock';
+import { UseApiMockSportSee } from '../../Services/UseApiMockSportSee';
 
 function Introduction () {
-    const [ userData, setUserData ] = useState( null );
+    const [firstName, setFirstName] = useState('Loading...');
+    const useApiMockSportSee = new UseApiMockSportSee();
+
     useEffect(() => {
-        // Fetch user data //
-        const params = new Proxy(new URLSearchParams(window.location.search), {
-            get: (searchParams, prop) => searchParams.get(prop),
-        });
-        let userId = params.user ?? 12;
-        userId = parseInt(userId)
-        
-        const user = getUserMainData(userId);
-        setUserData(user);
+        const params = new URLSearchParams(window.location.search);
+        const userIdParam = params.get('user');
+        const userId = userIdParam ? parseInt(userIdParam) : 12; // Si user n'est pas spécifié, utiliser 12 par défaut //
+
+        const userFirstName = useApiMockSportSee.getFirstNameById(userId);
+        setFirstName(userFirstName);
     }, []);
-    if ( !userData ) {
-        return <div>Loading...</div>;
-    }
-    const { userInfos } = userData;
+
     return (
-        <div className = "container-introduction" >
-            <span className = "line1">
-                <h2 className = "title-introduction" >Bonjour</h2>
-                <p className = "firstname" >{ userInfos.firstName }</p>
+        <div className="container-introduction">
+            <span className="line1">
+                <h2 className="title-introduction">Bonjour</h2>
+                <p className="firstname">{firstName}</p>
             </span>
-            <span className = "txt-introduction" >Félicitations, vous avez explosé vos objectifs hier &#x1F44F;</span>
+            <span className="txt-introduction">Félicitations, vous avez explosé vos objectifs hier &#x1F44F;</span>
         </div>
     )
 }
+
 export default Introduction;
+
+
