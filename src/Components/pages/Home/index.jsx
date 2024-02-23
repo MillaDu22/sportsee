@@ -1,3 +1,4 @@
+import React from 'react';
 import './Home.css';
 import Introduction from '../../Introduction/index.jsx';
 import SimpleBarChart from '../../SimpleBarChart/index.jsx';
@@ -8,6 +9,7 @@ import AsideColumn from '../../AsideColumn/index.jsx';
 
 
 function Home() {
+    const userId = 12;
     return (
         <div className = "container-home">
             <div className = "dash-center">
