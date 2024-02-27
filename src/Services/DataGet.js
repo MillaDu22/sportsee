@@ -1,4 +1,4 @@
-// API call imports
+// API call imports //
 import { getUserActivity, getUserAverageSessions, getUserMainData, getUserPerformance } from "../Services/UseApiSportSee";
 
 export const DataGet = async (type, userId) => {
