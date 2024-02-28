@@ -9,7 +9,6 @@ import AsideColumn from '../../AsideColumn/index.jsx';
 
 
 function Home() {
-    const userId = 12;
     return (
         <div className = "container-home">
             <div className = "dash-center">

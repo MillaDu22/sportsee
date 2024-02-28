@@ -1,4 +1,4 @@
-export function getUserMainData(userId) {
+export function getUserMockMainData(userId) {
     if ( userId === 12 ) {
         return {
             id: 12,
@@ -33,7 +33,7 @@ export function getUserMainData(userId) {
     }
 }
 
-export function getUserActivity(userId) {
+export function getUserMockActivity(userId) {
     if ( userId === 12 ) {
         return {
             sessions: [
@@ -116,7 +116,7 @@ export function getUserActivity(userId) {
     }
 }
 
-export function getUserAverageSessions(userId) {
+export function getUserMockAverageSessions(userId) {
     if ( userId === 12 ) {
         return {
             sessions: [
@@ -185,7 +185,7 @@ export function getUserAverageSessions(userId) {
     }
 }
 
-export function getUserPerformance(userId) {
+export function getUserMockPerformance(userId) {
     if ( userId === 12 ) {
         return {
             kind: {
