@@ -1,17 +1,13 @@
 // Modèle pour les performances de l'utilisateur //
-const UserPerformanceModel = {
-    kind: {
-        1: String,
-        2: String,
-        4: String,
-        5: String,
-        6: String
-    },
-    data: [
-        {
-            value: Number,
-            kind: Number
-        }
-    ]
-}
-export { UserPerformanceModel };
+import PropTypes from 'prop-types';
+
+const UserPerformanceModel = PropTypes.shape({
+    userId: PropTypes.number.isRequired,
+    kind: PropTypes.objectOf(PropTypes.string.isRequired).isRequired,
+    data: PropTypes.arrayOf(PropTypes.shape({
+        value: PropTypes.number.isRequired,
+        kind: PropTypes.number.isRequired
+    })).isRequired
+});
+
+export default UserPerformanceModel;
