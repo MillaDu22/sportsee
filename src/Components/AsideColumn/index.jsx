@@ -6,6 +6,8 @@ import ProteinesIcon from '../../assets/images/proteines-icon.png';
 import GlucidesIcon from '../../assets/images/glucides-icon.png';
 import LipidesIcon from '../../assets/images/lipidesicon.png';
 import { getUserMainData } from '../../Services/UseApiSportSee';
+import { UserMainDataModel } from '../../Models/userMainDataModel';
+import PropTypes from 'prop-types';
 
 function AsideColumn() {
     const [userData, setUserData] = useState(null);
@@ -16,6 +18,7 @@ function AsideColumn() {
                 const params = new URLSearchParams(window.location.search);
                 const userId = params.get('user') ?? '12';
                 const userData = await getUserMainData(userId);
+                checkUserMainData(userData.data); // Appel de la fonction de validation //
                 setUserData(userData.data);
             } catch (error) {
                 console.error('Erreur lors de la récupération des données principales de l\'utilisateur :', error);
@@ -23,6 +26,18 @@ function AsideColumn() {
         };
         fetchUserMainData();
     }, []);
+    // Fonction de validation des données cards via Prop-types model //
+    const checkUserMainData = (data) => {
+        if (!data || !data.id || !data.userInfos || !data.keyData) {
+            console.error("Données cards manquantes ou incorrectes");
+            return;
+        }
+        console.log("Modèle de données cards :", UserMainDataModel); 
+        console.log("Données cards utilisateur validées :", data); 
+        if (data.id && data.keyData && data.userInfos) {
+            PropTypes.checkPropTypes(UserMainDataModel, data, 'data', 'AsideColumn');
+        }
+    };
 
     if (!userData) {
         return <div>Loading...</div>;
@@ -49,3 +64,7 @@ function AsideColumn() {
 }
 
 export default AsideColumn;
+
+
+
+
