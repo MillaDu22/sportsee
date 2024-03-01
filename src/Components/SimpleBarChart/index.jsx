@@ -40,11 +40,13 @@ export default function SimpleBarChart() {
   // Fonction de validation des données d'activité utilisateur //
   const checkUserActivityData = (data) => {
     // Vérifie si les données ne sont pas définies ou si les sessions sont absentes //
-    if (!data || !data.userId || !data.sessions || !Array.isArray(data.sessions)) {
+    if (!data.data || !data.data.userId || !data.data.sessions || !Array.isArray(data.data.sessions)) {
       console.error("Données d'activité utilisateur manquantes ou incorrectes :", data);
       return; // Arrête l'exécution de la fonction si les données sont incorrectes //
     }
-    PropTypes.checkPropTypes(UserActivityModel, data, 'data', 'SimpleBarChart');
+    if (data.data && data.data.userId && data.data.sessions && Array.isArray(data.data.sessions)) {
+      PropTypes.checkPropTypes(UserActivityModel, data, 'data', 'SimpleBarChart');
+    }
     console.log("Modèle de données d'activité utilisateur :", UserActivityModel); 
     console.log("Données d'activité utilisateur validées :", data); 
   };

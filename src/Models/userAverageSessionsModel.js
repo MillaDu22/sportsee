@@ -7,6 +7,6 @@ const UserAverageSessionsModel = PropTypes.shape({
         day: PropTypes.number.isRequired,
         sessionLength: PropTypes.number.isRequired
     })).isRequired
-});
+}).isRequired;
 
 export default UserAverageSessionsModel;
