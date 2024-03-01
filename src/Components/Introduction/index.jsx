@@ -25,14 +25,14 @@ function Introduction() {
 
     // Fonction de validation des données utilisateur via Prop-types model //
     const checkUserMainData = (data) => {
-        if (!data || !data.id || !data.userInfos || !data.keyData) {
+        if (!data || !data.id || !data.userInfos || !data.keyData || (!data.todayScore && data.todayScore !== 0 && !data.score && data.score !== 0)) {
             console.error("Données utilisateur manquantes ou incorrectes");
             return;
         }
         console.log("Modèle de données utilisateur :", UserMainDataModel); 
         console.log("Données utilisateur validées :", data); 
         // Vérifie que toutes les propriétés requises sont définies dans les données //
-        if (data.id && data.keyData && data.userInfos) {
+        if (data.id && data.keyData && data.userInfos && ((data.todayScore !== undefined && data.todayScore !== null) || (data.score !== undefined && data.score !== null))) {
             PropTypes.checkPropTypes(UserMainDataModel, data, 'data', 'Introduction');
         }
     };
