@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './SimpleBarChart.css';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Legend from '../../assets/images/legend.png';
-import { getUserActivity } from '../../Services/UseApiSportSee'; 
+import { getUserActivity } from '../../Services/UseApiSportSee';
+import PropTypes from 'prop-types';
+import { UserActivityModel } from '../../Models/userActivityModel.js'; 
 
 export default function SimpleBarChart() {
   const [activityData, setActivityData] = useState([]);
@@ -13,6 +15,7 @@ export default function SimpleBarChart() {
         const params = new URLSearchParams(window.location.search);
         const userId = params.get('user') || '12'; 
         const userData = await getUserActivity(userId); 
+        checkUserActivityData(userData); // Appel de la fonction de validation //
 
         // Vérifie si les données renvoyées par l'API sont valides et contiennent des sessions //
         if (userData && userData.data && userData.data.sessions && Array.isArray(userData.data.sessions)) {
@@ -34,6 +37,18 @@ export default function SimpleBarChart() {
     fetchUserActivity();
   }, []);
 
+  // Fonction de validation des données d'activité utilisateur //
+  const checkUserActivityData = (data) => {
+    // Vérifie si les données ne sont pas définies ou si les sessions sont absentes //
+    if (!data || !data.userId || !data.sessions || !Array.isArray(data.sessions)) {
+      console.error("Données d'activité utilisateur manquantes ou incorrectes :", data);
+      return; // Arrête l'exécution de la fonction si les données sont incorrectes //
+    }
+    PropTypes.checkPropTypes(UserActivityModel, data, 'data', 'SimpleBarChart');
+    console.log("Modèle de données d'activité utilisateur :", UserActivityModel); 
+    console.log("Données d'activité utilisateur validées :", data); 
+  };
+
   return (
     <div className="container-simple-bar-chart">
       <h3 className="title-simple-bar-chart">Activité quotidienne</h3>
@@ -52,7 +67,5 @@ export default function SimpleBarChart() {
     </div>
   );
 }
-
-
 
 

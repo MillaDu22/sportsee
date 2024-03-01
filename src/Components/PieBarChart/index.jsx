@@ -2,6 +2,8 @@ import './PieBarChart.css';
 import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { getUserMainData } from '../../Services/UseApiSportSee.js';
+import PropTypes from 'prop-types';
+import { UserMainDataModel } from '../../Models/userMainDataModel.js';
 
 export default function PieBarChart() {
     const [scorePercentage, setScorePercentage] = useState(0);
@@ -16,6 +18,7 @@ export default function PieBarChart() {
                 // Récupération des données principales de l'utilisateur en fonction de l'ID //
                 const userData = await getUserMainData(userId);
                 const scoreKey = userId === 12 ? 'todayScore' : 'score'; // Choix de la clé en fonction de l'ID utilisateur //
+                checkUserMainData(userData.data); // Appel de la fonction de validation //
 
                 // Obtention du score pourcentage en fonction de la clé choisie //
                 const score = userData.data[scoreKey] ?? 0;
@@ -36,6 +39,20 @@ export default function PieBarChart() {
             score: scorePercentage,
         }
     ];
+
+    // Fonction de validation des données score utilisateur via Prop-types model //
+    const checkUserMainData = (data) => {
+        if (!data || !data.id || !data.userInfos || !data.keyData || (!data.todayScore && data.todayScore !== 0 && !data.score && data.score !== 0)) {
+            console.error("Données score utilisateur manquantes ou incorrectes");
+            return;
+        }
+        console.log("Modèle de données score utilisateur :", UserMainDataModel); 
+        console.log("Données score utilisateur validées :", data); 
+        // Vérifie que toutes les propriétés requises sont définies dans les données //
+        if (data.id && data.keyData && data.userInfos && ((data.todayScore !== undefined && data.todayScore !== null) || (data.score !== undefined && data.score !== null))) {
+            PropTypes.checkPropTypes(UserMainDataModel, data, 'data', 'PieBarChart');
+        }
+    };
 
     return (
         <div className="container-pie-bar-chart">
