@@ -9,7 +9,8 @@ const UseApiSportSee = axios.create({
 // Get user data Infos firstName, score, keyDataCards //
 export const getUserMainData = async (userId) => {
     try {
-        const res = await UseApiSportSee.get(`http://localhost:3000/user/${userId}`, DataMock);
+        const res = await UseApiSportSee.get(`http://localhost:3000/user/${userId}`, DataMock); 
+        // ${userId} Interpollation permettant d'acceder aux informations de l'utilisateur spécifique via la route /user/:id //
         console.log('Data user id, firstName, cards & score returned by API:', res.data); 
         return res.data;
     } catch (error) {
@@ -28,7 +29,6 @@ export const getUserActivity = async (userId) => {
         return res.data;
     } catch (error) {
         console.error('Erreur lors de la récupération des données d\'activité utilisateur via l\'API réelle :', error);
-        // En cas d'erreur, retourner les données mockées //
         console.log('Chargement des données d\'activité depuis les mocks', DataMock.getUserActivity)
         return await DataMock.getUserActivity(userId);
     }
@@ -42,7 +42,6 @@ export const getUserAverageSessions = async (userId) => {
         return res.data;
     } catch (error) {
         console.error('Erreur lors de la récupération des données moyennes de session utilisateur via l\'API réelle :', error);
-        // En cas d'erreur, retourner les données mockées //
         console.log('Chargement des données de moyennes de sessions depuis les mocks', DataMock.getUserAverageSessions)
         return await DataMock.getUserAverageSessions(userId);
     }
@@ -56,7 +55,6 @@ export const getUserPerformance = async (userId) => {
         return res.data;
     } catch (error) {
         console.error('Erreur lors de la récupération des données de performance utilisateur via l\'API réelle :', error);
-        // En cas d'erreur, retourner les données mockées //
         console.log('Chargement des données de performance depuis les mocks', DataMock.getUserPerformance)
         return await DataMock.getUserPerformance(userId);
     }
