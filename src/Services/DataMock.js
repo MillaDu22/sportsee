@@ -1,5 +1,6 @@
-export function getUserMainData(id) {
-    if ( id === 12 ) {
+// Export des fonctions 4 fonctions de datas mockées //
+export function getUserMainData(userId) {
+    if ( userId === 12 ) {
         return {
             data: {
                 id: 12,

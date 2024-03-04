@@ -5,7 +5,6 @@ import { getUserAverageSessions } from '../../Services/UseApiSportSee';
 import PropTypes from 'prop-types';
 import { UserAverageSessionsModel } from '../../Models/userAverageSessionsModel.js'; 
 
-
 // Fonction pour mapper les nombres de 1 à 7 aux lettres des jours de la semaine sur l'axe X //
 const mapDayToLetter = (day) => {
     const daysOfWeek = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];

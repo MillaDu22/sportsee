@@ -16,7 +16,7 @@ function AsideColumn() {
         const fetchUserMainData = async () => {
             try {
                 const params = new URLSearchParams(window.location.search);
-                const userId = params.get('user') ?? '12';
+                const userId = parseInt(params.get('user') ?? 12);
                 const userData = await getUserMainData(userId);
                 checkUserMainData(userData.data); // Appel de la fonction de validation //
                 setUserData(userData.data);

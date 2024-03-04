@@ -5,22 +5,25 @@ import { UserMainDataModel }  from '../../Models/userMainDataModel.js';
 import PropTypes from 'prop-types';
 
 function Introduction() {
-    const [userData, setUserData] = useState(null);
+    const [firstName, setFirstName] = useState('Loading...');
 
     useEffect(() => {
-        const fetchUserMainData = async (userId) => {
+        const fetchUserMainData = async () => {
             try {
-                const userData = await getUserMainData(userId);
-                checkUserMainData(userData.data); // Appel de la fonction de validation //
-                setUserData(userData.data);
+                const params = new URLSearchParams(window.location.search);
+                const userId = parseInt(params.get('user') ?? 12);
+                const userData = await getUserMainData(userId); 
+                checkUserMainData(userData.data); // Appel de la function de validation //
+                if (userData && userData.data && userData.data.userInfos && userData.data.userInfos.firstName) {
+                    setFirstName(userData.data.userInfos.firstName);
+                } else {
+                    console.error("Les données utilisateur ne contiennent pas le prénom attendu");
+                }
             } catch (error) {
                 console.error("Erreur lors de la récupération des données utilisateur:", error);
             }
         };
-
-        const params = new URLSearchParams(window.location.search);
-        const userId = params.get('user') ?? '12'; 
-        fetchUserMainData(userId);
+        fetchUserMainData();
     }, []);
 
     // Fonction de validation des données utilisateur via Prop-types model //
@@ -38,14 +41,10 @@ function Introduction() {
     };
     return (
         <div className="container-introduction">
-            {userData ? (
                 <span className="line1">
                     <h2 className="title-introduction">Bonjour</h2>
-                    <p className="firstname">{userData.userInfos.firstName}</p>
+                    <p className="firstname">{firstName}</p>
                 </span>
-                ) : (
-                <p>Loading...</p>
-            )}
             <span className="txt-introduction">Félicitations, vous avez explosé vos objectifs hier &#x1F44F;</span>
         </div>
     );

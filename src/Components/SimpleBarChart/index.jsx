@@ -13,7 +13,7 @@ export default function SimpleBarChart() {
     const fetchUserActivity = async () => {
       try {
         const params = new URLSearchParams(window.location.search);
-        const userId = params.get('user') || '12'; 
+        const userId = parseInt(params.get('user') ?? 12);
         const userData = await getUserActivity(userId); 
         checkUserActivityData(userData); // Appel de la fonction de validation //
 

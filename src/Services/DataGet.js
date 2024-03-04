@@ -1,4 +1,4 @@
-// API call imports //
+// Module util appels API fonctions getUserActivity(userId), getUserPerformance(userId), getUserAverageSessions(userId), getUserMainData(userId) //
 import { getUserActivity, getUserAverageSessions, getUserMainData, getUserPerformance } from "../Services/UseApiSportSee";
 
 export const DataGet = async (type, userId) => {

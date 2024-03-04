@@ -1,3 +1,4 @@
+// Dans chaque fonction, une tentative est faite pour effectuer l'appel à l'API réelle. En cas d'échec, les données mockées sont renvoyées //
 import axios from 'axios';
 import * as DataMock from '../Services/DataMock.js';
 
