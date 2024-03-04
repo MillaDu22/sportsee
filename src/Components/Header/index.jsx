@@ -1,6 +1,11 @@
 import './Header.css';
 import LogoHeader from '../../assets/logo/logo-header-sportsee.png';
 
+/**
+ * Composant React représentant l'en-tête de l'application.
+ * Affiche le logo SportSee et les liens de navigation.
+ * @returns {JSX.Element} - Élément JSX représentant l'en-tête.
+ */
 function Header() {
     return (
         <div className ="header">

@@ -11,6 +11,10 @@ const mapDayToLetter = (day) => {
     return daysOfWeek[day - 1];
 };
 
+/**
+ * Composant React représentant un graphique à ligne minuscule affichant la durée moyenne des sessions.
+ * @returns {JSX.Element} - Élément JSX représentant le graphique à ligne minuscule.
+ */
 export default function TinyLineChart() {
     const [sessionData, setSessionData] = useState([]);
 
@@ -30,6 +34,10 @@ export default function TinyLineChart() {
         fetchUserAverageSessions();
     }, []);
 
+    /**
+     * Fonction pour vérifier la validité des données de sessions moyennes de l'utilisateur.
+     * @param {Object} data - Les données de sessions moyennes de l'utilisateur.
+     */
     const checkUserAverageSessionsData = (data) => {
         // Vérifie si les données ne sont pas définies ou si les sessions sont absentes //
         if (!data.data || !data.data.userId || !data.data.sessions || !Array.isArray(data.data.sessions)) {

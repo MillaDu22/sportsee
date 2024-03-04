@@ -6,6 +6,10 @@ import LogoBiker from '../../assets/images/icon-biker.png';
 import LogoBodyBuilding from '../../assets/images/icon-body-building.png';
 import Copyright from '../../assets/images/copyright.png';
 
+/**
+ * Composant React représentant une disposition verticale de boutons.
+ * @returns {JSX.Element} - Élément JSX représentant la disposition verticale de boutons.
+ */
 function VerticalLayout() {
     const buttons = [   
         { logoSrc: LogoMeditation, altText: 'logo-meditation' },

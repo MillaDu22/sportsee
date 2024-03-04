@@ -9,6 +9,10 @@ import { getUserMainData } from '../../Services/UseApiSportSee';
 import { UserMainDataModel } from '../../Models/userMainDataModel';
 import PropTypes from 'prop-types';
 
+/**
+ * Composant de colonne latérale affichant les données utilisateur sous forme de cartes.
+ * @returns {JSX.Element} - Élément JSX représentant la colonne latérale.
+ */
 function AsideColumn() {
     const [userData, setUserData] = useState(null);
 
@@ -26,7 +30,11 @@ function AsideColumn() {
         };
         fetchUserMainData();
     }, []);
-    // Fonction de validation des données cards via Prop-types model //
+    
+    /**
+     * Fonction de validation des données des cartes utilisateur via le modèle PropTypes.
+     * @param {Object} data - Les données utilisateur.
+     */
     const checkUserMainData = (data) => {
         if (!data || !data.id || !data.userInfos || !data.keyData || (!data.todayScore && data.todayScore !== 0 && !data.score && data.score !== 0)) {
             console.error("Données cards manquantes ou incorrectes");

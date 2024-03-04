@@ -5,6 +5,10 @@ import { getUserPerformance } from '../../Services/UseApiSportSee';
 import PropTypes from 'prop-types';
 import { UserPerformanceModel } from '../../Models/userPerformanceModel.js';
 
+/**
+ * Composant React représentant un graphique radar simple affichant les performances de l'utilisateur.
+ * @returns {JSX.Element} - Élément JSX représentant le graphique radar des performances de l'utilisateur.
+ */
 export default function SimpleRadarChart() {
     const [performanceData, setPerformanceData] = useState([]);
 

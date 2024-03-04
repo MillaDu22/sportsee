@@ -1,4 +1,8 @@
-// Export des fonctions 4 fonctions de datas mockées //
+/**
+ * Récupère les données principales d'un utilisateur.
+ * @param {string} userId - L'identifiant de l'utilisateur pour lequel récupérer les données.
+ * @returns {Object} - Les données principales de l'utilisateur.
+ */
 export function getUserMainData(userId) {
     if ( userId === 12 ) {
         return {
@@ -38,6 +42,11 @@ export function getUserMainData(userId) {
     }
 }
 
+/**
+ * Récupère les données d'activité d'un utilisateur.
+ * @param {string} userId - L'identifiant de l'utilisateur pour lequel récupérer les données.
+ * @returns {Object} - Les données d'activité de l'utilisateur.
+ */
 export function getUserActivity(userId) {
     if ( userId === 12 ) {
         return {
@@ -127,6 +136,11 @@ export function getUserActivity(userId) {
     }
 }
 
+/**
+ * Récupère les données de sessions moyennes d'un utilisateur.
+ * @param {string} userId - L'identifiant de l'utilisateur pour lequel récupérer les données.
+ * @returns {Object} - Les données de sessions moyennes de l'utilisateur.
+ */
 export function getUserAverageSessions(userId) {
     if ( userId === 12 ) {
         return {
@@ -202,6 +216,11 @@ export function getUserAverageSessions(userId) {
     }
 }
 
+/**
+ * Récupère les données de performance d'un utilisateur.
+ * @param {string} userId - L'identifiant de l'utilisateur pour lequel récupérer les données.
+ * @returns {Object} - Les données de performance de l'utilisateur.
+ */
 export function getUserPerformance(userId) {
     if ( userId === 12 ) {
         return {

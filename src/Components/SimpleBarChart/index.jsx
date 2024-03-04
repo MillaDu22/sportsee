@@ -6,6 +6,10 @@ import { getUserActivity } from '../../Services/UseApiSportSee';
 import PropTypes from 'prop-types';
 import { UserActivityModel } from '../../Models/userActivityModel.js'; 
 
+/**
+ * Composant React représentant un graphique à barres simple affichant l'activité quotidienne de l'utilisateur.
+ * @returns {JSX.Element} - Élément JSX représentant le graphique à barres de l'activité quotidienne de l'utilisateur.
+ */
 export default function SimpleBarChart() {
   const [activityData, setActivityData] = useState([]);
 

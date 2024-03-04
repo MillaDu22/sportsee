@@ -5,6 +5,10 @@ import { getUserMainData } from '../../Services/UseApiSportSee.js';
 import PropTypes from 'prop-types';
 import { UserMainDataModel } from '../../Models/userMainDataModel.js';
 
+/**
+ * Composant React représentant un graphique circulaire affichant le score de l'utilisateur sous forme de pourcentage.
+ * @returns {JSX.Element} - Élément JSX représentant le graphique circulaire du score de l'utilisateur.
+ */
 export default function PieBarChart() {
     const [scorePercentage, setScorePercentage] = useState(0);
 

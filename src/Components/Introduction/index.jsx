@@ -4,6 +4,11 @@ import { getUserMainData } from '../../Services/UseApiSportSee';
 import { UserMainDataModel }  from '../../Models/userMainDataModel.js';
 import PropTypes from 'prop-types';
 
+/**
+ * Composant React représentant l'introduction affichée sur la page d'accueil.
+ * Affiche le prénom de l'utilisateur et un message de félicitations.
+ * @returns {JSX.Element} - Élément JSX représentant l'introduction.
+ */
 function Introduction() {
     const [firstName, setFirstName] = useState('Loading...');
 
