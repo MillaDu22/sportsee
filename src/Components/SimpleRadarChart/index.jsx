@@ -1,7 +1,7 @@
 import './SimpleRadarChart.css';
 import React, { useState, useEffect } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
-import { getUserPerformance } from '../../Services/UseApiSportSee'; 
+import { DataGet } from '../../Services/DataGet.js';
 import PropTypes from 'prop-types';
 import { UserPerformanceModel } from '../../Models/userPerformanceModel.js';
 
@@ -18,8 +18,12 @@ export default function SimpleRadarChart() {
                 const params = new URLSearchParams(window.location.search);
                 let userId = params.get('user') ?? 12;
                 userId = parseInt(userId);
-                const userData = await getUserPerformance(userId);
+
+                const mock = params.get('mock') === '1' ? true: false;
+                const userData = await DataGet ('USER_PERFORMANCE', userId, mock);
+
                 checkUserPerformanceData(userData); // Appel de la fonction de validation //
+                
                 const kindData = userData.data.kind; // Récupére les noms des kinds à partir des data API //
                 const performanceData = userData.data.data.map(item => ({
                     kind: kindData[item.kind], // Utilise l'objet kind pour obtenir le nom du kind //
@@ -44,8 +48,6 @@ export default function SimpleRadarChart() {
         if (data.data.userId && data.data.kind && data.data.data && Array.isArray(data.data.data)) {
             PropTypes.checkPropTypes(UserPerformanceModel, data, 'data', 'SimpleRadarChart');
         }       
-        console.log("Modèle de données de performance utilisateur :", UserPerformanceModel); 
-        console.log("Données de performance utilisateur validées :", data); 
     };
 
     return (
@@ -53,7 +55,7 @@ export default function SimpleRadarChart() {
             <ResponsiveContainer width="100%" height="100%">
                 <RadarChart outerRadius={70} data={performanceData}>
                     <PolarGrid radialLines={false} />
-                    <PolarAngleAxis dataKey="kind" stroke="white" tickLine={false} fontSize={12} />
+                    <PolarAngleAxis dataKey="kind" stroke="white" tickLine={false} fontSize={12} fontFamily ="Roboto" />
                     <Radar name="performance" dataKey="performance" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7} />
                 </RadarChart>
             </ResponsiveContainer>

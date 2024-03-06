@@ -17,7 +17,7 @@
     line-height: 48px;
 }
 
-.firstname {
+.firstname, .loading {
     position: absolute;
     margin-left: 180px;
     font-family: "Roboto";

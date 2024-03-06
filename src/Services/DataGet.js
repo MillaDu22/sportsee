@@ -1,5 +1,5 @@
-// Module util appels API fonctions getUserActivity(userId), getUserPerformance(userId), getUserAverageSessions(userId), getUserMainData(userId) //
 import { getUserActivity, getUserAverageSessions, getUserMainData, getUserPerformance } from "../Services/UseApiSportSee";
+import { getUserActivityMock, getUserAverageSessionsMock, getUserMainDataMock, getUserPerformanceMock } from "../Services/DataMock";
 
 /**
 * Récupère les données spécifiques à un utilisateur en fonction du type spécifié.
@@ -8,21 +8,37 @@ import { getUserActivity, getUserAverageSessions, getUserMainData, getUserPerfor
 * @param {string} userId - L'identifiant de l'utilisateur pour lequel récupérer les données.
 * @returns {Promise<Array>} - Une promesse résolue avec un tableau de données correspondant au type spécifié pour l'utilisateur donné.
 */
-export const DataGet = async (type, userId) => {
+export const DataGet = async (type, userId, mock=false) => {
     let data = []; 
 
     switch (type) {
         case 'USER_ACTIVITY':
-        data = await getUserActivity(userId);
+            if(!mock) {
+                data = await getUserActivity(userId);
+            } else {
+                data = getUserActivityMock(userId)
+            }
         break;
         case 'USER_PERFORMANCE':
-        data = await getUserPerformance(userId);
+            if(!mock) {
+                data = await getUserPerformance(userId);
+            } else {
+                data = getUserPerformanceMock(userId)
+            }
         break;
         case 'USER_AVERAGE_SESSIONS':
-        data = await getUserAverageSessions(userId);
+            if(!mock) {
+                data = await getUserAverageSessions(userId);
+            } else {
+                data = getUserAverageSessionsMock(userId)
+            }
         break;
         case 'USER_MAIN_DATA':
-        data = await getUserMainData(userId);
+            if(!mock) {
+                data = await getUserMainData(userId);
+            } else {
+                data = getUserMainDataMock(userId)
+            }
         break;
         default: data=[]
     }

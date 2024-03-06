@@ -3,15 +3,15 @@
  * @param {string} userId - L'identifiant de l'utilisateur pour lequel récupérer les données.
  * @returns {Object} - Les données principales de l'utilisateur.
  */
-export function getUserMainData(userId) {
+export function getUserMainDataMock(userId) {
     if ( userId === 12 ) {
         return {
             data: {
                 id: 12,
                 userInfos: {
                     age: 31,
-                    firstName: 'Karl',
-                    lastName: 'Dovineau',
+                    firstName: 'Benito',
+                    lastName: 'Andorra',
                 },
                 todayScore: 0.12,
                 keyData: {
@@ -28,8 +28,8 @@ export function getUserMainData(userId) {
             id: 18,
             userInfos: {
                 age: 34,
-                firstName: 'Cecilia',
-                lastName: 'Ratorez',
+                firstName: 'Margarita',
+                lastName: 'Puigcerda',
             },
             score: 0.3,
             keyData: {
@@ -47,7 +47,7 @@ export function getUserMainData(userId) {
  * @param {string} userId - L'identifiant de l'utilisateur pour lequel récupérer les données.
  * @returns {Object} - Les données d'activité de l'utilisateur.
  */
-export function getUserActivity(userId) {
+export function getUserActivityMock(userId) {
     if ( userId === 12 ) {
         return {
             data: {
@@ -141,7 +141,7 @@ export function getUserActivity(userId) {
  * @param {string} userId - L'identifiant de l'utilisateur pour lequel récupérer les données.
  * @returns {Object} - Les données de sessions moyennes de l'utilisateur.
  */
-export function getUserAverageSessions(userId) {
+export function getUserAverageSessionsMock(userId) {
     if ( userId === 12 ) {
         return {
             data: {
@@ -221,7 +221,7 @@ export function getUserAverageSessions(userId) {
  * @param {string} userId - L'identifiant de l'utilisateur pour lequel récupérer les données.
  * @returns {Object} - Les données de performance de l'utilisateur.
  */
-export function getUserPerformance(userId) {
+export function getUserPerformanceMock(userId) {
     if ( userId === 12 ) {
         return {
             data: {

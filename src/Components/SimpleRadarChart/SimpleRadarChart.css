@@ -1,4 +1,8 @@
 .container-simple-radar-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     max-width:258px;
     width:32%;
     height:263px;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Introduction.css';
-import { getUserMainData } from '../../Services/UseApiSportSee';
 import { UserMainDataModel }  from '../../Models/userMainDataModel.js';
+import { DataGet } from '../../Services/DataGet.js';
 import PropTypes from 'prop-types';
 
 /**
@@ -17,7 +17,10 @@ function Introduction() {
             try {
                 const params = new URLSearchParams(window.location.search);
                 const userId = parseInt(params.get('user') ?? 12);
-                const userData = await getUserMainData(userId); 
+
+                const mock = params.get('mock') === '1' ? true: false;
+                const userData = await DataGet ('USER_MAIN_DATA', userId, mock);
+
                 checkUserMainData(userData.data); // Appel de la function de validation //
                 if (userData && userData.data && userData.data.userInfos && userData.data.userInfos.firstName) {
                     setFirstName(userData.data.userInfos.firstName);
@@ -26,7 +29,7 @@ function Introduction() {
                 }
             } catch (error) {
                 console.error("Erreur lors de la récupération des données utilisateur:", error);
-            }
+            } 
         };
         fetchUserMainData();
     }, []);
@@ -37,13 +40,12 @@ function Introduction() {
             console.error("Données utilisateur manquantes ou incorrectes");
             return;
         }
-        console.log("Modèle de données utilisateur :", UserMainDataModel); 
-        console.log("Données utilisateur validées :", data); 
         // Vérifie que toutes les propriétés requises sont définies dans les données //
         if (data.id && data.keyData && data.userInfos && ((data.todayScore !== undefined && data.todayScore !== null) || (data.score !== undefined && data.score !== null))) {
             PropTypes.checkPropTypes(UserMainDataModel, data, 'data', 'Introduction');
         }
     };
+
     return (
         <div className="container-introduction">
                 <span className="line1">

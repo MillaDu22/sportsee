@@ -1,4 +1,8 @@
 .container-pie-bar-chart {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position:relative;
     max-width:258px;
     width:32%;
@@ -8,6 +12,13 @@
     box-shadow:rgba( 0, 0, 0, 0.212);
 }
 
+.circle {
+    position:absolute;
+    background: white;
+    height:130px;
+    width:130px;
+    border-radius: 100%;
+}
 .title-pie-chart {
     font-family: "Roboto";
     font-size: 15px;
@@ -15,13 +26,13 @@
     line-height: 24px;
     color: #20253A;
     position:relative;
-    left:20px;
+    right:31%;
 }
 
 .percentage-score {
     position: absolute;
-    top : 30%;
-    left:38.5%;
+    top : -5%;
+    left:28%;
     width:55px;
     font-family: "Roboto";
     color: #282D30;
@@ -33,8 +44,8 @@
 
 .objectif-score {
     position: absolute;
-    top : 50%;
-    left:37%;
+    top : 35%;
+    left:26%;
     width:60px;
     font-family: "Roboto";
     color: #74798C;
