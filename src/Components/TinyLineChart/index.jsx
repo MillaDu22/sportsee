@@ -1,9 +1,10 @@
 import './TinyLineChart.css';
 import React, { useState, useEffect } from 'react';
-import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer} from 'recharts';
 import { DataGet } from '../../Services/DataGet.js';
 import PropTypes from 'prop-types';
 import { UserAverageSessionsModel } from '../../Models/userAverageSessionsModel.js'; 
+import CustomToolTip from './CustomToolTip.jsx';
 
 // Fonction pour mapper les nombres de 1 à 7 aux lettres des jours de la semaine sur l'axe X //
 const mapDayToLetter = (day) => {
@@ -52,15 +53,44 @@ export default function TinyLineChart() {
             PropTypes.checkPropTypes(UserAverageSessionsModel, data, 'data', 'TinyLineChart');
         }
     };
+
+    function customMouseMove(e) {
+        let sessionWrap = document.querySelector('.container-tiny-line-chart')
+        if (e.isTooltipActive) {
+            let windowWidth = sessionWrap.offsetWidth;
+            let mouseXpercent= Math.floor(
+                (e.activeCoordinate.x / windowWidth) * 100
+            )
+            sessionWrap.style.background = `linear-gradient(90deg, rgba(255, 0, 0, 1) ${mouseXpercent}%, rgba(205, 0, 0, 0.9) ${mouseXpercent}%, rgba(205, 0, 0, 0.9) 100%)`;
+        }
+        else {
+            sessionWrap.style.background = "red"
+        }
+    }
     
+    function customOnMouseOut(){
+        let sessionWrap =document.querySelector('.container-tiny-line-chart');
+        sessionWrap.style.background = "red"
+    }
+
     return (
         <div className="container-tiny-line-chart">
             <h3 className="title-tiny-line-chart">Durée moyenne des sessions</h3>
-            <ResponsiveContainer width="100%" height="100%">
-                <LineChart margin={{ left: 15, right: 15, bottom: 30, top: 120}} data={sessionData} >
-                    <Line type="natural" dataKey="sessionLength" stroke="#ffffff7f" strokeWidth={2} dot={false} label={false} activeDot = {{stroke:"rgba(255,255,255,0.6)", strokeWidth:4, r:2}} height="80%" />
-                    <XAxis tickMargin={20} dataKey="day" stroke="#ffffff7f" width="100%"  tickLine={false} axisLine={false} tickFormatter={(value) => mapDayToLetter(value)}/>
-                    <Tooltip cursor={false} wrapperStyle={{ outline: "none", fontWeight: 500, color: "black" }} contentStyle={{ backgroundColor: "rgba(255, 255, 255, 1)", height: "25px", width: "35px"}} labelFormatter={(value) =>`${value} min`}  position={{ y:60}} />
+            <ResponsiveContainer width="100%" height="100%"  >
+                <LineChart margin={{ left: 15, right: 15, bottom: 30, top: 120}} data={sessionData} onMouseMove={(e) => customMouseMove(e)} onMouseOut = {() => customOnMouseOut()} >
+                    <Line type="natural" dataKey="sessionLength" stroke="url(#gradientLine)" strokeWidth={2} dot={false} label={false} activeDot = {{stroke:"rgba(255,255,255,0.6)", strokeWidth:4, r:2}} />
+                    <XAxis tickMargin={15} dataKey="day" stroke="#ffffff7f" width="100%"  tickLine={false} axisLine={false} tickFormatter={(value) => mapDayToLetter(value)} fontSize = {12} fontFamily="Roboto"/>
+                    <YAxis hide domain = {['dataMin-10','dataMax+10']} />
+                    <Tooltip cursor={false} content={<CustomToolTip />}  wrapperStyle={{ fontWeight: 500, color: "black" }} contentStyle={{ backgroundColor: "rgba(255, 255, 255, 1)", height: "25px", width: "35px"}} labelFormatter={(value) =>`${value} min`} />
+                    <defs>
+                        <linearGradient id="gradientLine" x1 = "0%" y1="0%" x2="100%" y2= "0%">
+                            <stop offset="0%" stopColor="rgba(255, 255, 255, 0.3)" />
+                            <stop offset="20%" stopColor="rgba(255, 255, 255, 0.4)" />
+                            <stop offset="40%" stopColor="rgba(255, 255, 255, 0.5)" />
+                            <stop offset="60%" stopColor="rgba(255, 255, 255, 0.6)" />
+                            <stop offset="100%" stopColor="rgba(255, 255, 255, 1)" />
+                        </linearGradient>
+                    </defs>
                 </LineChart>
             </ResponsiveContainer>
         </div>

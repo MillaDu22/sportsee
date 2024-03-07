@@ -55,7 +55,7 @@ export default function SimpleRadarChart() {
             <ResponsiveContainer width="100%" height="100%">
                 <RadarChart outerRadius={70} data={performanceData}>
                     <PolarGrid radialLines={false} />
-                    <PolarAngleAxis dataKey="kind" stroke="white" tickLine={false} fontSize={12} fontFamily ="Roboto" />
+                    <PolarAngleAxis dataKey="kind" stroke="white" tickLine={false} fontSize="12px" fontFamily ="Roboto" />
                     <Radar name="performance" dataKey="performance" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7} />
                 </RadarChart>
             </ResponsiveContainer>

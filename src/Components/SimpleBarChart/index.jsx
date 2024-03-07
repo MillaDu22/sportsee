@@ -74,7 +74,7 @@ export default function SimpleBarChart() {
           <XAxis dataKey="day" stroke="#989EAC" tickLine={false} tickMargin={15} padding={{ left: 0, right: 0 }} tick={{ fontSize: 14, fontWeight: 500 }} />
           <YAxis yAxisId="calories" dataKey="Calories" hide="true" orientation="left" stroke="#9B9EAC" tickLine={false} axisLine={false} tickMargin={10} allowDataOverflow={true} minTickGap={10} allowDecimals={false} />
           <YAxis dataKey="Kilogram" yAxisId="kilogram" orientation="right" stroke="#9B9EAC" tickLine={false} axisLine={false} tickMargin={30} allowDataOverflow={true} minTickGap={10} allowDecimals={false} domain={["dataMin -1", "dataMax +1"]} />
-          <Tooltip cursor={{ fill: 'rgba(196, 196,196, 0.5)'}} contentStyle={{ backgroundColor: "red", height: "63px", width: "39px", fontSize:12}} formatter={(value, name) => [`${value} ${name === 'Kilogram' ? 'Kg' : 'Kcal'}`]} labelFormatter={() => ""} itemStyle={{color:"white"}} position={{y:-50}} offset = {30} />
+          <Tooltip cursor={{ fill: 'rgba(196, 196,196, 0.4)'}} contentStyle={{  lineHeight: "20px", textAlign: "center", paddingTop: "20px", backgroundColor: "red", height: "63px", width: "39px", fontSize:12}} formatter={(value, name) => [`${value} ${name === 'Kilogram' ? 'Kg' : 'Kcal'}`]} labelFormatter={() => ""} itemStyle={{color:"white"}} position={{y:-50}} offset = {30} />
           <Bar yAxisId="kilogram" dataKey="Kilogram" fill="black" radius={[50, 50, 0, 0]} barSize={8}/>
           <Bar yAxisId="calories" dataKey="Calories" fill="red" radius={[50, 50, 0, 0]} barSize={8} />
         </BarChart>
