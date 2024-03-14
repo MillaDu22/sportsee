@@ -44,5 +44,12 @@ export const DataGet = async (type, userId, mock=false) => {
     }
     return data;
 };
-    
-    
+
+// Query params, URL utilisateur mock // 
+export function getUserData(dataType) {
+    const params = new URLSearchParams(window.location.search);
+    const userId = parseInt(params.get('user') ?? 12);
+    const mock = params.get('mock') === '1' ? true : false;
+    return { userId, mock, dataType };
+}
+

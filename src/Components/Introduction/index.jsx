@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Introduction.css';
 import { UserMainDataModel }  from '../../Models/userMainDataModel.js';
 import { DataGet } from '../../Services/DataGet.js';
+import { getUserData } from '../../Services/DataGet.js';
 import PropTypes from 'prop-types';
 
 /**
@@ -15,11 +16,8 @@ function Introduction() {
     useEffect(() => {
         const fetchUserMainData = async () => {
             try {
-                const params = new URLSearchParams(window.location.search);
-                const userId = parseInt(params.get('user') ?? 12);
-
-                const mock = params.get('mock') === '1' ? true: false;
-                const userData = await DataGet ('USER_MAIN_DATA', userId, mock);
+                const { userId, mock, dataType } = getUserData('USER_MAIN_DATA');
+                const userData = await DataGet(dataType, userId, mock);
 
                 checkUserMainData(userData.data); // Appel de la function de validation //
                 if (userData && userData.data && userData.data.userInfos && userData.data.userInfos.firstName) {
@@ -34,18 +32,26 @@ function Introduction() {
         fetchUserMainData();
     }, []);
 
-    // Fonction de validation des données utilisateur via Prop-types model //
     const checkUserMainData = (data) => {
+        // Vérifie si les données ne sont pas définies ou si certaines propriétés essentielles sont absentes //
         if (!data || !data.id || !data.userInfos || !data.keyData || (!data.todayScore && data.todayScore !== 0 && !data.score && data.score !== 0)) {
-            console.error("Données utilisateur manquantes ou incorrectes");
-            return;
+            console.error("Données utilisateur manquantes ou incorrectes", data);
+            return false;
         }
-        // Vérifie que toutes les propriétés requises sont définies dans les données //
-        if (data.id && data.keyData && data.userInfos && ((data.todayScore !== undefined && data.todayScore !== null) || (data.score !== undefined && data.score !== null))) {
-            PropTypes.checkPropTypes(UserMainDataModel, data, 'data', 'Introduction');
-        }
+    
+        // Vérifie le modèle global UserMainDataModel //
+        const globalValidation = PropTypes.checkPropTypes(UserMainDataModel, data, 'data', 'checkUserMainData');
+    
+        // Vérifie les types de données pour l'objet userInfos //
+        let userInfosValidation = PropTypes.checkPropTypes({
+            age: PropTypes.number,
+            firstName: PropTypes.string.isRequired,
+            lastName: PropTypes.string,
+        }, data.userInfos, 'userInfos', 'checkUserMainData');
+    
+        // Si les deux validations sont réussies, retourne true, sinon retourne false //
+        return globalValidation && userInfosValidation;
     };
-
     return (
         <div className="container-introduction">
                 <span className="line1">

@@ -2,6 +2,7 @@ import './SimpleRadarChart.css';
 import React, { useState, useEffect } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 import { DataGet } from '../../Services/DataGet.js';
+import { getUserData } from '../../Services/DataGet.js';
 import PropTypes from 'prop-types';
 import { UserPerformanceModel } from '../../Models/userPerformanceModel.js';
 
@@ -15,12 +16,8 @@ export default function SimpleRadarChart() {
     useEffect(() => {
         const fetchUserPerformanceData = async () => {
             try {
-                const params = new URLSearchParams(window.location.search);
-                let userId = params.get('user') ?? 12;
-                userId = parseInt(userId);
-
-                const mock = params.get('mock') === '1' ? true: false;
-                const userData = await DataGet ('USER_PERFORMANCE', userId, mock);
+                const { userId, mock, dataType } = getUserData('USER_PERFORMANCE');
+                const userData = await DataGet(dataType, userId, mock);
 
                 checkUserPerformanceData(userData); // Appel de la fonction de validation //
                 
@@ -37,19 +34,28 @@ export default function SimpleRadarChart() {
         fetchUserPerformanceData();
     }, []);
 
-    // Fonction de validation des données de performance utilisateur //
     const checkUserPerformanceData = (data) => {
         // Vérifie si les données ne sont pas définies ou si des propriétés essentielles sont absentes //
         if (!data.data || !data.data.userId || !data.data.kind || !data.data.data || !Array.isArray(data.data.data)) {
             console.error("Données de performance utilisateur manquantes ou incorrectes :", data);
-            return; // Arrête l'exécution de la fonction si les données sont incorrectes //
-        }     
-        // Vérifie si chaque élément de données correspond au modèle UserPerformanceModel //
-        if (data.data.userId && data.data.kind && data.data.data && Array.isArray(data.data.data)) {
-            PropTypes.checkPropTypes(UserPerformanceModel, data, 'data', 'SimpleRadarChart');
-        }       
-    };
+            return false;
+        }
+    
+        // Vérifie le modèle global UserActivityModel //
+        const globalValidation = PropTypes.checkPropTypes(UserPerformanceModel, data, 'data', 'checkUserPerformanceData');
 
+        // Vérifie les types de données pour chaque session //
+        const sessionsValidation = data.data.data.every(data => {
+            return PropTypes.checkPropTypes({
+                kind: PropTypes.number.isRequired,
+                value: PropTypes.number.isRequired,
+            }, data, 'data', 'checkUserPerformanceData');
+        });
+
+        // Si les deux validations sont réussies, retourne true, sinon retourne false //
+        return globalValidation && sessionsValidation;
+    };
+    
     return (
         <div className="container-simple-radar-chart">
             <ResponsiveContainer width="100%" height="100%">

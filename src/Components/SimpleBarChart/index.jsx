@@ -3,6 +3,7 @@ import './SimpleBarChart.css';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Legend from '../../assets/images/legend.png';
 import { DataGet } from '../../Services/DataGet.js';
+import { getUserData } from '../../Services/DataGet.js';
 import PropTypes from 'prop-types';
 import { UserActivityModel } from '../../Models/userActivityModel.js'; 
 
@@ -20,11 +21,8 @@ export default function SimpleBarChart() {
   useEffect(() => {
     const fetchUserActivity = async () => {
       try {
-        const params = new URLSearchParams(window.location.search);
-        const userId = parseInt(params.get('user') ?? 12);
-
-        const mock = params.get('mock') === '1' ? true: false;
-        const userData = await DataGet ('USER_ACTIVITY', userId, mock);
+        const { userId, mock, dataType } = getUserData('USER_ACTIVITY');
+        const userData = await DataGet(dataType, userId, mock);
 
         checkUserActivityData(userData); // Appel de la fonction de validation //
 
@@ -52,16 +50,27 @@ export default function SimpleBarChart() {
     fetchUserActivity();
   }, []);
 
-  // Fonction de validation des données d'activité utilisateur //
   const checkUserActivityData = (data) => {
     // Vérifie si les données ne sont pas définies ou si les sessions sont absentes //
     if (!data.data || !data.data.userId || !data.data.sessions || !Array.isArray(data.data.sessions)) {
-      console.error("Données d'activité utilisateur manquantes ou incorrectes :", data);
-      return; // Arrête l'exécution de la fonction si les données sont incorrectes //
-    }
-    if (data.data && data.data.userId && data.data.sessions && Array.isArray(data.data.sessions)) {
-      PropTypes.checkPropTypes(UserActivityModel, data, 'data', 'SimpleBarChart');
-    }
+        console.error("Données d'activité utilisateur manquantes ou incorrectes :", data);
+        return false;
+      }
+
+      // Vérifie le modèle global UserActivityModel //
+      const globalValidation = PropTypes.checkPropTypes(UserActivityModel, data, 'data', 'checkUserActivityData');
+
+      // Vérifie les types de données pour chaque session //
+      const sessionsValidation = data.data.sessions.every(session => {
+          return PropTypes.checkPropTypes({
+              day: PropTypes.string.isRequired,
+              kilogram: PropTypes.number.isRequired,
+              calories: PropTypes.number.isRequired
+          }, session, 'session', 'checkUserActivityData');
+      });
+
+      // Si les deux validations sont réussies, retourne true, sinon retourne false //
+      return globalValidation && sessionsValidation;
   };
 
   return (

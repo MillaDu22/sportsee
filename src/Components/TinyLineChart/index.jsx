@@ -2,6 +2,7 @@ import './TinyLineChart.css';
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer} from 'recharts';
 import { DataGet } from '../../Services/DataGet.js';
+import { getUserData } from '../../Services/DataGet.js';
 import PropTypes from 'prop-types';
 import { UserAverageSessionsModel } from '../../Models/userAverageSessionsModel.js'; 
 import CustomToolTip from './CustomToolTip.jsx';
@@ -22,12 +23,8 @@ export default function TinyLineChart() {
     useEffect(() => {
         const fetchUserAverageSessions = async () => {
             try {
-                const params = new URLSearchParams(window.location.search);
-                let userId = params.get('user') ?? 12;
-                userId = parseInt(userId);
-
-                const mock = params.get('mock') === '1' ? true: false;
-                const userData = await DataGet ('USER_AVERAGE_SESSIONS', userId, mock);
+                const { userId, mock, dataType } = getUserData('USER_AVERAGE_SESSIONS');
+                const userData = await DataGet(dataType, userId, mock);
 
                 setSessionData(userData.data.sessions);
                 checkUserAverageSessionsData(userData); // Appel de la fonction de validation //
@@ -43,17 +40,31 @@ export default function TinyLineChart() {
      * @param {Object} data - Les données de sessions moyennes de l'utilisateur.
      */
     const checkUserAverageSessionsData = (data) => {
-        // Vérifie si les données ne sont pas définies ou si les sessions sont absentes //
-        if (!data.data || !data.data.userId || !data.data.sessions || !Array.isArray(data.data.sessions)) {
+        // Vérifie si les données ne sont pas définies ou si certaines propriétés essentielles sont absentes //
+        if (!data || !data.data || !data.data.userId || !data.data.sessions || !Array.isArray(data.data.sessions)) {
             console.error("Données de sessions moyennes utilisateur manquantes ou incorrectes :", data);
-            return; // Arrête l'exécution de la fonction si les données sont incorrectes //
+            return false;
         }
-        // Vérifie chaque élément de la session pour s'assurer qu'il correspond au modèle //
-        if (data.data && data.data.userId && data.data.sessions && Array.isArray(data.data.sessions)) {
-            PropTypes.checkPropTypes(UserAverageSessionsModel, data, 'data', 'TinyLineChart');
-        }
+        // Vérifie le modèle global UserActivityModel //
+        const globalValidation = PropTypes.checkPropTypes(UserAverageSessionsModel, data, 'data', 'checkUserAverageSessionsData');
+
+        // Vérifie les types de données pour chaque session //
+        const sessionsValidation = data.data.sessions.every(session => {
+            return PropTypes.checkPropTypes({
+                day: PropTypes.number.isRequired,
+                sessionLength: PropTypes.number.isRequired,
+            }, session, 'session', 'checkUserAverageSessionsData');
+        });
+
+        // Si les deux validations sont réussies, retourne true, sinon retourne false //
+        return globalValidation && sessionsValidation;
     };
 
+    /**
+     * Gère les événements de déplacement de la souris sur TinyLineChart.
+     * Ajuste le fond de l'élément '.container-tiny-line-chart' en fonction de la position horizontale de la souris.
+     * @param {MouseEvent} e - L'objet événement MouseEvent.
+     */
     function customMouseMove(e) {
         let sessionWrap = document.querySelector('.container-tiny-line-chart')
         if (e.isTooltipActive) {
@@ -68,6 +79,10 @@ export default function TinyLineChart() {
         }
     }
     
+    /**
+     * Gère l'événement de sortie de la souris de TinyLineChart.
+     * Réinitialise le fond de l'élément '.container-tiny-line-chart' à sa couleur par défaut lorsqu'elle est appelée.
+     */
     function customOnMouseOut(){
         let sessionWrap =document.querySelector('.container-tiny-line-chart');
         sessionWrap.style.background = "red"
