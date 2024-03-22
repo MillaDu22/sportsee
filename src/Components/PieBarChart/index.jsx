@@ -47,21 +47,28 @@ export default function PieBarChart() {
             console.error("Données utilisateur manquantes ou incorrectes", data);
             return false;
         }
-    
         // Vérifie le modèle global UserMainDataModel //
         const globalValidation = PropTypes.checkPropTypes(UserMainDataModel, data, 'data', 'checkUserMainData');
-        
+
         // Vérifie les types de données pour l'objet keyData //
-        const scoreSchema = {
-            todayScore: PropTypes.number,
-            score: PropTypes.number.isRequired
-        };
-        const scoreData = {
-            todayScore: data.todayScore,
-            score: data.score
-        };
-        const keyDataValidation = PropTypes.checkPropTypes(scoreSchema, scoreData, 'score', 'checkUserMainData');
-    
+        let keyDataValidation = true; // Initialisation à true //
+        if (data.id === 12) {
+            const scoreSchema = {
+                todayScore: PropTypes.number.isRequired,
+            };
+            const scoreData = {
+                todayScore: data.todayScore,
+            };
+            keyDataValidation = PropTypes.checkPropTypes(scoreSchema, scoreData, 'score', 'checkUserMainData');
+        } else {
+            const scoreSchema = {
+                score: PropTypes.number.isRequired,
+            };
+            const scoreData = {
+                score: data.score,
+            };
+            keyDataValidation = PropTypes.checkPropTypes(scoreSchema, scoreData, 'score', 'checkUserMainData');
+        }
         // Si les deux validations sont réussies, retourne true, sinon retourne false //
         return globalValidation && keyDataValidation;
     };

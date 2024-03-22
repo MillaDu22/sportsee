@@ -1,11 +1,11 @@
 import React from 'react';
 import './Home.css';
-import Introduction from '../../Introduction/index.jsx';
-import SimpleBarChart from '../../SimpleBarChart/index.jsx';
-import SimpleRadarChart from '../../SimpleRadarChart/index.jsx';
-import TinyLineChart from '../../TinyLineChart/index.jsx';
-import PieBarChart from '../../PieBarChart/index.jsx';
-import AsideColumn from '../../AsideColumn/index.jsx';
+import Introduction from '../../Components/Introduction/index.jsx';
+import SimpleBarChart from '../../Components/SimpleBarChart/index.jsx';
+import SimpleRadarChart from '../../Components/SimpleRadarChart/index.jsx';
+import TinyLineChart from '../../Components/TinyLineChart/index.jsx';
+import PieBarChart from '../../Components/PieBarChart/index.jsx';
+import AsideColumn from '../../Components/AsideColumn/index.jsx';
 
 /**
  * Composant React représentant la page d'accueil de l'application.
